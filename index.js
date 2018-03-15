@@ -1,11 +1,12 @@
 const express = require('express'), 		//helps turn node into a server that handles http requests
+	dotenv = require('dotenv').config(),
 	app = express(),
 	mongoose = require('mongoose');
 
 	mongoose.connect('mongodb://localhost/test');
 
 	app.get('/', function(req, res) {
-		res.send("Hello World");
+		res.send("Hello World!");
 	})
 
 	var Robot = mongoose.model('Robot', { 
@@ -98,8 +99,6 @@ const express = require('express'), 		//helps turn node into a server that handl
 		res.send("Seeded!");
 	})
 
-
-
-app.listen(4006, function () {
-  console.log('Example app listening on port 4006!');
+app.listen(process.env.SERVER_PORT, function () {
+  console.log(`Example app listening on port ${process.env.SERVER_PORT}!`);
 })
